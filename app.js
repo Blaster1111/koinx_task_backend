@@ -10,7 +10,15 @@ const app = express();
 app.use(express.json()); 
 app.use('/api/trades', tradeRoutes);
 app.use(errorHandler);
-connectDB();
+const PORT = process.env.PORT || 8000;
+connectDB()
+.then(() => {
+     app.on('error', (error) => { 
+          console.log(`Error occurred: ${error}`)
+          throw error
+     })
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+     app.listen(PORT, ()=>{
+          console.log(`App is listening on port: 3000`);
+     })
+});
