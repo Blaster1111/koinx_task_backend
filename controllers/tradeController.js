@@ -3,9 +3,6 @@ import sendResponse from '../utils/responseHandler.js';
 
 const uploadCSV = async (req, res, next) => {
     try {
-        // if (!req.file) {
-        //     return sendResponse(res, 400, false, null, 'No file uploaded. Please upload a CSV file.');
-        // }
         const filePath = req.file.path;
         await storeTrades(filePath);
         sendResponse(res, 200, true, null, 'CSV data uploaded successfully.');
