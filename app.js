@@ -8,6 +8,9 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 app.use("/api/trades", tradeRoutes);
+app.get('/',(req,res) =>{
+  res.send("Hello koinX, GET Req on Hosted URL")
+})
 app.use(errorHandler);
 const PORT = process.env.PORT || 8000;
 app.on("error", (error) => {
